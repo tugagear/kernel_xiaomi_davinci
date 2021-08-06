@@ -61,13 +61,13 @@
 
 		qcom,dispparam-enabled;
 		qcom,mdss-dsi-panel-fod-dimlayer-enabled;
-		qcom,mdss-panel-on-dimming-delay = <200>;
+		qcom,mdss-panel-on-dimming-delay = <300>;
 		/* IRQF_ONESHOT | IRQF_TRIGGER_FALLING */
 		qcom,esd-err-irq-gpio = <&tlmm 32 0x2002>;
 
-		qcom,disp-doze-lpm-backlight = <10>;
-		qcom,disp-doze-hbm-backlight = <255>;
-		qcom,disp-fod-off-dimming-delay = <85>;
+		qcom,disp-doze-lpm-backlight = <0>;
+		qcom,disp-doze-hbm-backlight = <2047>;
+		qcom,disp-fod-off-dimming-delay = <300>;
 		qcom,mdss-dsi-panel-dc-demura-threshold = <262>;
 
 		qcom,disp-fod-dim-lut = <
