@@ -61,13 +61,13 @@
 		qcom,samsung-prepare-hbm;
 		qcom,dispparam-enabled;
 		qcom,mdss-dsi-panel-fod-dimlayer-enabled;
-		qcom,mdss-panel-on-dimming-delay = <120>;
+		qcom,mdss-panel-on-dimming-delay = <300>;
 		/* IRQF_ONESHOT | IRQF_TRIGGER_FALLING */
 		/* trig-flags: falling-0x0002 rasing-0x0001 */
 		qcom,esd-err-irq-gpio = <&tlmm 32 0x2002>;
-		qcom,disp-doze-lpm-backlight = <20>;
-		qcom,disp-doze-hbm-backlight = <266>;
-		qcom,disp-fod-off-dimming-delay = <85>;
+		qcom,disp-doze-lpm-backlight = <0>;
+		qcom,disp-doze-hbm-backlight = <2047>;
+		qcom,disp-fod-off-dimming-delay = <300>;
 		qcom,disp-fod-dim-lut = <
 			/* brightness, alpha */
 			0	0xFF
