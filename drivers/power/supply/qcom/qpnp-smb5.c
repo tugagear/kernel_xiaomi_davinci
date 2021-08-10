@@ -33,6 +33,8 @@
 
 #include <soc/qcom/socinfo.h>
 
+#define fcc_forced_ua 5000000
+
 static struct smb_params smb5_pmi632_params = {
 	.fcc			= {
 		.name   = "fast charge current",
@@ -1655,8 +1657,7 @@ static int smb5_usb_main_get_prop(struct power_supply *psy,
 		rc = smblib_get_irq_status(chg, val);
 		break;
 	case POWER_SUPPLY_PROP_FORCE_MAIN_FCC:
-		rc = smblib_get_charge_param(chg, &chg->param.fcc,
-							&val->intval);
+		val->intval = fcc_forced_ua;
 		break;
 	case POWER_SUPPLY_PROP_FORCE_MAIN_ICL:
 		rc = smblib_get_charge_param(chg, &chg->param.usb_icl,
