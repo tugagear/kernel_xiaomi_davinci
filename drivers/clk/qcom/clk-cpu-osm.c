@@ -39,8 +39,8 @@
 #include "clk-voter.h"
 #include "clk-debug.h"
 
-#define OSM_INIT_RATE			300000000UL
-#define XO_RATE				19200000UL
+#define OSM_INIT_RATE			150000000UL
+#define XO_RATE				20900000UL
 #define OSM_TABLE_SIZE			40
 #define OSM_TABLE_REDUCED_SIZE		12
 #define SINGLE_CORE_COUNT		1
@@ -676,7 +676,7 @@ static int osm_cpufreq_cpu_init(struct cpufreq_policy *policy)
 			table[i].frequency = (XO_RATE * lval) / 1000;
 		table[i].driver_data = table[i].frequency;
 
-		if (core_count == SINGLE_CORE_COUNT || table[i].frequency < 576000)
+		if (core_count == SINGLE_CORE_COUNT || table[i].frequency < 150000)
 			table[i].frequency = CPUFREQ_ENTRY_INVALID;
 
 		/* Two of the same frequencies means end of table */
