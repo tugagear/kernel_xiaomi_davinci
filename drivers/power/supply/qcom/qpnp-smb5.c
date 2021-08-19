@@ -33,8 +33,9 @@
 
 #include <soc/qcom/socinfo.h>
 
-#define FCC_FORCED_UA 3500000
-static int fcc_forced_ua = FCC_FORCED_UA;
+#define fcc_forced_ua 5000000
+
+const int fcc_forced = fcc_forced_ua;
 
 static struct smb_params smb5_pmi632_params = {
 	.fcc			= {
@@ -280,7 +281,7 @@ static const struct clamp_config clamp_levels[] = {
 };
 
 #define PMI632_MAX_ICL_UA	3000000
-#define PM6150_MAX_FCC_UA	3500000
+#define PM6150_MAX_FCC_UA	3000000
 static int smb5_chg_config_init(struct smb5 *chip)
 {
 	struct smb_charger *chg = &chip->chg;
@@ -1652,16 +1653,18 @@ static int smb5_usb_main_get_prop(struct power_supply *psy,
 		val->intval = 0;
 		break;
 	case POWER_SUPPLY_PROP_MAIN_FCC_MAX:
-		val->intval = fcc_forced_ua;
+		val->intval = chg->main_fcc_max;
 		break;
 	case POWER_SUPPLY_PROP_IRQ_STATUS:
 		rc = smblib_get_irq_status(chg, val);
 		break;
 	case POWER_SUPPLY_PROP_FORCE_MAIN_FCC:
-		rc = val->intval = fcc_forced_ua;
+		rc = smblib_get_charge_param(chg, &chg->param.fcc,
+							&val->intval);
 		break;
 	case POWER_SUPPLY_PROP_FORCE_MAIN_ICL:
-		rc = val->intval = fcc_forced_ua;
+		rc = smblib_get_charge_param(chg, &chg->param.usb_icl,
+							&val->intval);
 		break;
 	case POWER_SUPPLY_PROP_COMP_CLAMP_LEVEL:
 		val->intval = chg->comp_clamp_level;
